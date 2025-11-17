@@ -1,0 +1,168 @@
+📌 Full Project Prompt — “BabyCare Tracker” App
+
+Project Goal:
+Build a Flutter app named BabyCare Tracker that helps parents track multiple babies' feeding amounts, times, and diaper changes. The app must support shared accounts (e.g., both parents) so they can collaboratively add and view logs on separate devices. Offline usage must sync when internet returns.
+
+🔐 Features
+1️⃣ User Authentication
+
+Firebase Authentication
+
+Support login via Email & Password or Email Link
+
+All babies & logs tied to authenticated user account
+
+Allow multiple users in the same "family group" to share babies' data
+
+2️⃣ Baby Profiles
+
+Add, edit, remove babies
+
+Fields:
+
+Name (required)
+
+Date of birth (required)
+
+Photo (optional)
+
+3️⃣ Feeding Tracking
+
+Add feeding entry:
+
+Amount (ml/oz)
+
+Type: Bottle / Breast / Solid
+
+Timestamp
+
+Optional notes
+
+Daily total summary per baby
+
+History and charts
+
+4️⃣ Feeding Interval Reminders
+
+Per-baby interval (e.g. every 3 hours)
+
+Local notification when feeding is due
+
+Snooze option
+
+Mark as completed directly from notification
+
+5️⃣ Pee & Poop Tracking
+
+Log diaper events:
+
+Pee
+
+Poop
+
+Timestamp
+
+Notes (optional)
+
+Daily counts + trends
+
+6️⃣ Analytics (basic dashboards)
+
+Weekly chart of feeding amounts
+
+Weekly diaper chart
+
+🗃 Data + Sync Architecture
+
+Use a hybrid architecture:
+
+Component	Technology	Purpose
+Local database	Drift (SQLite ORM)	Offline first
+Cloud database	Firebase Firestore	Sync between parents
+Auth	Firebase Auth	Shared access
+Sync service	Background worker	Push/pull changes
+
+All CRUD operations go through Bloc → Repository → Local DB → Cloud sync
+
+Conflict resolution strategy: latest timestamp wins
+
+🔔 Notifications System
+
+flutter_local_notifications
+
+Scheduled alarms based on feeding interval
+
+Works offline
+
+📱 UI / UX Requirements
+
+Clean baby-friendly UI (pastel colors, soft edges)
+
+Baby selector at top of screen
+
+Large quick-action buttons:
+
+Add Feeding
+
+Add Pee/Poop
+
+Timeline view for logs
+
+Light/Dark mode supported
+
+💡 Technical Requirements
+
+State management: Bloc
+
+Local persistence: Drift
+
+Cloud sync: Firestore
+
+Dependency injection recommended (e.g., get_it)
+
+Modular architecture:
+
+lib/
+  data/
+    models/
+    repositories/
+    local/
+    remote/
+  logic/ (Bloc folders)
+  presentation/
+    screens/
+    widgets/
+
+
+Unit tests for core logic + sync
+
+Integration tests for add-feeding workflow
+
+🔮 Stretch / Future Features
+
+Export logs to PDF/CSV
+
+Wear OS / Apple Watch companion
+
+Growth charts (weight/height tracking)
+
+Home-screen widgets
+
+👉 Deliverables expected:
+
+Fully working Flutter project
+
+Firebase setup instructions
+
+Support for iOS and Android
+
+App icon and onboarding screens
+
+Summary
+
+✔ Multi-device support
+✔ Collaborative logging
+✔ Offline + Sync
+✔ Bloc state management
+✔ Drift + Firestore backend
+✔ Notifications for feeding reminders
